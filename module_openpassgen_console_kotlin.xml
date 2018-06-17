@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_openpassgen_console_kotlin" default="compile.module.openpassgen_console_kotlin">
+  <dirname property="module.openpassgen_console_kotlin.basedir" file="${ant.file.module_openpassgen_console_kotlin}"/>
+  
+  <property name="module.jdk.home.openpassgen_console_kotlin" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.openpassgen_console_kotlin" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.openpassgen_console_kotlin" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.openpassgen_console_kotlin" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="openpassgen_console_kotlin.output.dir" value="${module.openpassgen_console_kotlin.basedir}/out/production/OpenPassGen_console_kotlin"/>
+  <property name="openpassgen_console_kotlin.testoutput.dir" value="${module.openpassgen_console_kotlin.basedir}/out/test/OpenPassGen_console_kotlin"/>
+  
+  <path id="openpassgen_console_kotlin.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="openpassgen_console_kotlin.module.production.classpath">
+    <path refid="${module.jdk.classpath.openpassgen_console_kotlin}"/>
+    <path refid="library.kotlinjavaruntime.classpath"/>
+  </path>
+  
+  <path id="openpassgen_console_kotlin.runtime.production.module.classpath">
+    <pathelement location="${openpassgen_console_kotlin.output.dir}"/>
+    <path refid="library.kotlinjavaruntime.classpath"/>
+  </path>
+  
+  <path id="openpassgen_console_kotlin.module.classpath">
+    <path refid="${module.jdk.classpath.openpassgen_console_kotlin}"/>
+    <pathelement location="${openpassgen_console_kotlin.output.dir}"/>
+    <path refid="library.kotlinjavaruntime.classpath"/>
+  </path>
+  
+  <path id="openpassgen_console_kotlin.runtime.module.classpath">
+    <pathelement location="${openpassgen_console_kotlin.testoutput.dir}"/>
+    <pathelement location="${openpassgen_console_kotlin.output.dir}"/>
+    <path refid="library.kotlinjavaruntime.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.openpassgen_console_kotlin">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.openpassgen_console_kotlin">
+    <patternset refid="excluded.from.module.openpassgen_console_kotlin"/>
+  </patternset>
+  
+  <path id="openpassgen_console_kotlin.module.sourcepath">
+    <dirset dir="${module.openpassgen_console_kotlin.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.openpassgen_console_kotlin" depends="compile.module.openpassgen_console_kotlin.production,compile.module.openpassgen_console_kotlin.tests" description="Compile module OpenPassGen_console_kotlin"/>
+  
+  <target name="compile.module.openpassgen_console_kotlin.production" depends="register.custom.compilers" description="Compile module OpenPassGen_console_kotlin; production classes">
+    <mkdir dir="${openpassgen_console_kotlin.output.dir}"/>
+    <javac2 destdir="${openpassgen_console_kotlin.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.openpassgen_console_kotlin}/javac">
+      <compilerarg line="${compiler.args.openpassgen_console_kotlin}"/>
+      <bootclasspath refid="openpassgen_console_kotlin.module.bootclasspath"/>
+      <classpath refid="openpassgen_console_kotlin.module.production.classpath"/>
+      <src refid="openpassgen_console_kotlin.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.openpassgen_console_kotlin"/>
+    </javac2>
+    
+    <copy todir="${openpassgen_console_kotlin.output.dir}">
+      <fileset dir="${module.openpassgen_console_kotlin.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.openpassgen_console_kotlin.tests" depends="register.custom.compilers,compile.module.openpassgen_console_kotlin.production" description="compile module OpenPassGen_console_kotlin; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.openpassgen_console_kotlin" description="cleanup module">
+    <delete dir="${openpassgen_console_kotlin.output.dir}"/>
+    <delete dir="${openpassgen_console_kotlin.testoutput.dir}"/>
+  </target>
+</project>

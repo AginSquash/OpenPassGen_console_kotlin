@@ -6,4 +6,5 @@ Open OpenPassGen_console_kotlin.jar by double-click on Windows or use java - jar
 
 # In-app:
 [1]  -  PassGen with defalut settings (Length: 12, Numbers: true, Letters: true, Symbols: false
+
 [2]  -  Custom PassGen (You can change length, usage numbers, letters and symbols)

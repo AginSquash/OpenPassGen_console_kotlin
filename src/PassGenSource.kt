@@ -6,6 +6,58 @@
 
 import java.security.SecureRandom
 
+fun ParanoidMode(numEn: Boolean, letEn: Boolean, symEn: Boolean, length: Long): String {
+    var pass = ""
+    var much = length
+    while (much != 0L) {
+        val nlsR = SecureRandom()
+        var nls = nlsR.nextInt(3)+2
+        repeat(nls)
+        {
+            nls = nlsR.nextInt(3)
+            Thread.sleep(nlsR.nextInt(3)+1.toLong())
+        }
+        when (nls) {
+            0 -> if (numEn == true) {
+
+                repeat(nlsR.nextInt(3)+2)
+                {
+                    NumGen()
+                    Thread.sleep(nlsR.nextInt(3)+1.toLong())
+                }
+                pass = pass + NumGen()
+            } else {
+                much = much + 1
+            }
+            1 -> if (letEn == true) {
+
+                repeat(nlsR.nextInt(3)+2)
+                {
+                    LetGen()
+                    Thread.sleep(nlsR.nextInt(3)+1.toLong())
+                }
+                pass = pass + LetGen()
+            } else {
+                much = much + 1
+            }
+            2 -> if (symEn == true) {
+
+                repeat(nlsR.nextInt(3)+2)
+                {
+                    SymGen()
+                    Thread.sleep(nlsR.nextInt(3)+1.toLong())
+                }
+
+                pass = pass + SymGen()
+            } else {
+                much = much + 1
+            }
+        }
+        much = much - 1
+    }
+    return pass
+}
+
 
 fun PassGenMain(numEn: Boolean, letEn: Boolean, symEn: Boolean, length: Long): String {
     var pass = ""

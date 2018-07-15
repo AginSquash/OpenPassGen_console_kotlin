@@ -22,17 +22,23 @@ fun main(args: Array<String>) {
             }
 
 
-            "2", "[2]" -> customPass()
+            "2", "[2]" -> customPass(false)
 
-            "exit", "9", "[9]" -> exit()
+            "3", "[3]" -> customPass(true)
 
-            else -> help()
+            "exit", "9", "[9]" -> {
+                    println("GoodBye!")
+                    exit()
+            }
+
+            else -> cls(25)
+
         }
 
     }
 }
 
-fun customPass()
+fun customPass(paranoid: Boolean)
 {
     println("Selected Custom Password\nEnter Length")
     print(">>")
@@ -70,7 +76,12 @@ fun customPass()
         if ((isNum)||(isLett)||(isSymb))
         {
             println("Generated:\n")
-            println(PassGenMain(isNum, isLett, isSymb, length))
+            if (paranoid)
+            {
+                println(ParanoidMode(isNum, isLett, isSymb, length))
+            } else {
+                println(PassGenMain(isNum, isLett, isSymb, length))
+            }
         } else{
             println("Error: num = $isNum, let = $isLett, sym = $isSymb")
         }
@@ -89,11 +100,11 @@ fun BeforeMenu()
 {
     println("\nEnter to continue")
     readLine()
+    cls(25)
 }
 
 fun exit()
 {
-
     System.exit(0)
 }
 
@@ -101,12 +112,21 @@ fun help() {
 
 
 
-    println("\n		[v 1.0] powered by AginSquash. Source code aviable on GitHub \n          https://github.com/AginSquash/OpenPassGen_console_kotlin\n\n")
+    println("\n		[v 1.1] powered by AginSquash. Source code aviable on GitHub \n          https://github.com/AginSquash/OpenPassGen_console_kotlin\n\n")
 
 
 
     println("[1]  -  PassGen with defalut settings (Length: 12, Numbers: true, Letters: true, Symbols: false")
     println("[2]  -  Custom PassGen")
+    println("[3]  -  Paranoid Mode")
 
     println("[9]  -  Exit")
+}
+
+fun cls(n: Int)
+{
+   repeat(n)
+   {
+       println("\n")
+   }
 }

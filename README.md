@@ -9,3 +9,5 @@ Open OpenPassGen_console_kotlin.jar by double-click on Windows or use java -jar 
 [1]  -  PassGen with defalut settings (Length: 12, Numbers: true, Letters: true, Symbols: false
 
 [2]  -  Custom PassGen (You can change length, usage numbers, letters and symbols)
+
+[3]  -  Paranoid Mode. Now random will be more randomly (?). But it take more time
